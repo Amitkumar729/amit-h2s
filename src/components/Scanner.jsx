@@ -1,5 +1,6 @@
 
 import React, { useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Camera, Upload, ScanLine, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -51,6 +52,14 @@ const Scanner = ({ onScan, scanning }) => {
             <div
                 className={`relative w-full h-full bg-black/50 overflow-hidden border border-green-900/50 transition-all duration-300 ${!preview ? 'hover:bg-green-900/10 cursor-pointer' : ''}`}
                 onClick={() => !scanning && !preview && fileInputRef.current?.click()}
+                onKeyDown={(e) => {
+                    if ((e.key === 'Enter' || e.key === ' ') && !scanning && !preview) {
+                        fileInputRef.current?.click();
+                    }
+                }}
+                role="button"
+                tabIndex={!scanning && !preview ? 0 : -1}
+                aria-label="Upload image for scanning"
             >
                 <AnimatePresence>
                     {preview ? (
@@ -75,6 +84,7 @@ const Scanner = ({ onScan, scanning }) => {
                                 <button
                                     onClick={(e) => { e.stopPropagation(); setPreview(null); }}
                                     className="absolute top-2 right-2 p-2 bg-black/80 text-red-500 hover:text-red-400 z-40 border border-red-900/50"
+                                    aria-label="Clear image"
                                 >
                                     <X size={20} />
                                 </button>
@@ -113,9 +123,15 @@ const Scanner = ({ onScan, scanning }) => {
                 onChange={handleFileChange}
                 accept="image/png, image/jpeg, image/webp"
                 className="hidden"
+                aria-label="File input for image upload"
             />
         </div>
     );
+};
+
+Scanner.propTypes = {
+    onScan: PropTypes.func.isRequired,
+    scanning: PropTypes.bool.isRequired
 };
 
 export default Scanner;

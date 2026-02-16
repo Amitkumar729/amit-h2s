@@ -11,6 +11,14 @@ Upload any photo—your cat, a coffee mug, or a messy desk—and our "Quantum Sc
 
 Built with **React, TailwindCSS, and Google Gemini API**.
 
+## 🔒 Security Features
+
+- **Backend API Proxy**: API keys are securely stored on the server, never exposed to the client
+- **Rate Limiting**: Protection against abuse (20 requests per 15 minutes per IP)
+- **Input Validation**: File type and size validation on both client and server
+- **Security Headers**: Helmet.js for enhanced security headers
+- **Error Boundaries**: Graceful error handling for better UX
+
 ## 🚀 How to Deploy on Google Cloud (App Engine)
 
 Since you don't have `gcloud` installed locally, the easiest way is using **Google Cloud Shell** (browser-based terminal).
@@ -37,7 +45,15 @@ npm install
 npm run build
 ```
 
-### Step 3: Deploy
+### Step 3: Configure API Key
+Edit `app.yaml` and replace `YOUR_API_KEY_HERE` with your actual Gemini API key:
+
+```bash
+nano app.yaml
+# Replace YOUR_API_KEY_HERE with your key, then save (Ctrl+X, Y, Enter)
+```
+
+### Step 4: Deploy
 ```bash
 # Deploy to App Engine
 gcloud app deploy
@@ -48,3 +64,27 @@ gcloud app deploy
 
 ### 🎉 Done!
 The command will output your live URL (e.g., `https://amit-h2s.uc.r.appspot.com`).
+
+## 🛠️ Local Development
+
+```bash
+# Install dependencies
+npm install
+
+# Build the frontend
+npm run build
+
+# Start the server
+npm start
+
+# Open http://localhost:8080
+```
+
+## 📝 Environment Variables
+
+For local development, create a `.env` file:
+
+```
+GEMINI_API_KEY=your_api_key_here
+PORT=8080
+```
