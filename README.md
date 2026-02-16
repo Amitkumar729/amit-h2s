@@ -1,16 +1,41 @@
-# React + Vite
+# Snap Battlers - Monster Battle Strategy Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A strategic monster battle game powered by **Google Gemini AI**.
 
-Currently, two official plugins are available:
+## 🚀 How to Deploy on Google Cloud (App Engine)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Since you don't have `gcloud` installed locally, the easiest way is using **Google Cloud Shell** (browser-based terminal).
 
-## React Compiler
+### Step 1: Open Google Cloud Console
+1. Go to [console.cloud.google.com](https://console.cloud.google.com)
+2. Select your project: **amit-h2s**
+3. Click the **Activate Cloud Shell** icon (top right, >_).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Step 2: Clone & Build
+Run these commands in the Cloud Shell terminal:
 
-## Expanding the ESLint configuration
+```bash
+# 1. Clone your repository
+git clone https://github.com/Amitkumar729/amit-h2s.git
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# 2. Go into the folder
+cd amit-h2s
+
+# 3. Install dependencies
+npm install
+
+# 4. Build the project
+npm run build
+```
+
+### Step 3: Deploy
+```bash
+# Deploy to App Engine
+gcloud app deploy
+```
+
+- When asked to choose a region, pick one close to you (e.g., `us-central1` or `asia-south1`).
+- Type `Y` to confirm.
+
+### 🎉 Done!
+The command will output your live URL (e.g., `https://amit-h2s.uc.r.appspot.com`).

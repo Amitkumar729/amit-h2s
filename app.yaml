@@ -1,0 +1,12 @@
+runtime: nodejs18
+
+handlers:
+  # Serve all static files directly
+  - url: /(.*\..+)$
+    static_files: dist/\1
+    upload: dist/(.*\..+)$
+
+  # Catch-all to serve index.html (for SPA routing)
+  - url: /.*
+    static_files: dist/index.html
+    upload: dist/index.html
